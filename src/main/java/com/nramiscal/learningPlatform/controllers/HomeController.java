@@ -11,18 +11,20 @@ public class HomeController {
 		return "index";
 	}
 
-
 	
-    @RequestMapping("/m/{chapter}/0483/{assignmentNumber}")
-    public String show_assignment(@PathVariable("chapter") String discard, @PathVariable("assignmentNumber") String assignmentNumber) {
-    		return "assignment";
+    @RequestMapping("/m/{chapter}/{code}/{assignmentNumber}")
+    public String show_assignment(@PathVariable("chapter") String discard, @PathVariable("code") String code, @PathVariable("assignmentNumber") String assignmentNumber) {
+    		if (code.equals("0483")){
+    			return "assignment";
+    		}
+    		else if (code.equals("0553")) {
+    			return "lesson";
+    		}
+    		else {
+    			return "redirect:/";
+    		}
+    		
 	}
 
-	@RequestMapping("/m/{chapter}/0553/{assignmentNumber}")
-	public String show_lesson(@PathVariable("chapter") String discard, @PathVariable("assignmentNumber") String assignmentNumber) {
-		return "lesson";
-	}
-	
-	
 
 }
